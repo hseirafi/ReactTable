@@ -1,45 +1,45 @@
 /*eslint-disable*/
-import React, { Component } from 'react'
-import ReactModal from 'react-modal'
-ReactModal.setAppElement('#root')
-ReactModal.defaultStyles.content.background = 'none'
-ReactModal.defaultStyles.content.border = 'none'
+import React, {Component} from 'react';
+import ReactModal from 'react-modal';
+ReactModal.setAppElement('#root');
+ReactModal.defaultStyles.content.background = 'none';
+ReactModal.defaultStyles.content.border = 'none';
 const styles = {
   boxShadow:    {
-    boxShadow: '10px 10px 5px #888888'
+    boxShadow: '10px 10px 5px #888888',
   },
   title:        {
     display:         'flex',
     flexDirection:   'column',
-    alignItems:      'flex-start',
+    alignItems:      'flex-info',
     padding:         '1rem',
     backgroundColor: 'none',
-    color:           'white'
+    color:           'white',
   },
   inline:       {
     display:        'inline-flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   searchAdd:    {
     display:        'flex',
     width:          '100%',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   submitSearch: {
     borderRadius:    '1px',
     border:          '1px solid #cccccc',
     backgroundColor: '#216FB5',
     color:           'white',
-    width:           '5rem'
+    width:           '5rem',
   },
   searchField:  {
     display:      'flex',
     flex:         '1',
     maxHeight:    '45px',
-    alignItems:   'flex-start',
+    alignItems:   'flex-info',
     borderRadius: '4px',
     width:        '11rem',
-    border:       '1px solid #cccccc'
+    border:       '1px solid #cccccc',
   },
   date:         {
     margin:       '0 47px 0rem 0rem',
@@ -52,7 +52,7 @@ const styles = {
     fontWeight:   '400',
     display:      'inline-block',
     lineHeight:   '0',
-    padding:      '8px 5px'
+    padding:      '8px 5px',
   },
   trigger:      {
     display:         'flex',
@@ -60,14 +60,14 @@ const styles = {
     backgroundColor: '#216FB5',
     color:           'white',
     width:           '15rem',
-    borderRadius:    '4px'
+    borderRadius:    '4px',
   },
   parent:       {
     display:         'flex',
     flexDirection:   'column',
     padding:         '1rem',
     backgroundColor: 'none',
-    color:           '#676767'
+    color:           '#676767',
   },
   top:          {
     maxHeight:       '300px',
@@ -76,14 +76,14 @@ const styles = {
     padding:         '1rem',
     justifyContent:  'space-between',
     backgroundColor: 'white',
-    color:           '#676767'
+    color:           '#676767',
   },
   modal:        {
     display:        'flex',
     flexDirection:  'column',
     padding:        '1rem',
     alignItems:     'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
 
   },
   centerModal:  {
@@ -91,16 +91,16 @@ const styles = {
     minWidth:        '950px',
     boxShadow:       '0 25px 25px #888888',
     borderRadius:    '3px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   modalLeft:    {
     display:         'flex',
     flexDirection:   'column',
-    alignItems:      'flex-start',
+    alignItems:      'flex-info',
     padding:         '1rem',
     maxWidth:        '300px',
     backgroundColor: 'white',
-    color:           '#676767'
+    color:           '#676767',
   },
 
   modalRight:  {
@@ -109,89 +109,86 @@ const styles = {
     alignItems:      'flex-end',
     padding:         '1rem',
     backgroundColor: 'white',
-    color:           '#676767'
+    color:           '#676767',
   },
   input:       {
     marginTop:    '5px',
     width:        '300px',
     height:       '28px',
     borderRadius: '4px',
-    border:       '2px solid #cccccc'
+    border:       '2px solid #cccccc',
   },
   label:       {
     //display:'flex',
     marginTop:   '20px',
     marginRight: 'auto',
-    fontWeight:  '500'
+    fontWeight:  '500',
 
   },
   labelText:   {
     //display:'flex',
     marginBottom: '19px',
     marginRight:  'auto',
-    fontWeight:   '500'
+    fontWeight:   '500',
 
   },
   h1:          {
     fontWeight: 300,
     fontSize:   '4rem',
-    margin:     '1rem'
+    margin:     '1rem',
   },
   logo:        {
     height:          '12rem',
     backgroundColor: 'white',
     borderRadius:    '1rem',
-    margin:          '1rem'
+    margin:          '1rem',
   },
   modalFooter: {
     display:         'flex',
     flexDirection:   'column',
-    alignItems:      'flex-start',
+    alignItems:      'flex-info',
     padding:         '1rem',
     width:           '91%',
     marginLeft:      '1rem',
     backgroundColor: 'white',
-    color:           '#676767'
+    color:           '#676767',
   },
   textArea:    {
     width:   '100%',
     padding: '1rem',
 
-    borderRadius: '4px'
+    borderRadius: '4px',
   },
   save:        {
     display:       'flex',
     flexDirection: 'column',
     alignItems:    'flex-end',
     marginLeft:    '1rem',
-    padding:       '1rem'
+    padding:       '1rem',
 
   },
   hr:          {
-    width: '100%'
+    width: '100%',
 
   },
   button:      {
-
     height:          '2rem',
     width:           '5rem',
     borderRadius:    '4px',
     backgroundColor: '#676767',
-    color:           '#FFFFFF'
-
-  }
-
-}
+    color:           '#FFFFFF',
+  },
+};
 const headerStyles = {
   header:   {
     display:         'flex',
     alignItems:      'center',
-    backgroundColor: '#216FB5'
+    backgroundColor: '#216FB5',
   },
   title:    {
     flex:     1,
     fontSize: '1.5rem',
-    margin:   '1rem'
+    margin:   '1rem',
   },
   date:     {
     margin:       '6px 27px 0rem 0rem',
@@ -204,55 +201,46 @@ const headerStyles = {
     fontWeight:   '400',
     display:      'inline-block',
     lineHeight:   '0px',
-    padding:      '13px 11px'
+    padding:      '13px 11px',
 
   },
   boxClose: {},
   before:   {
-    content: 'x'
-  }
+    content: 'x',
+  },
 
-}
-const title = 'title'
+};
+const title = 'title';
 export class Title extends Component {
-  constructor () {
-    super()
-
-    this.handleOpenModal = this.handleOpenModal.bind(this)
-    this.handleCloseModal = this.handleCloseModal.bind(this)
+  constructor() {
+    super();
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
     this.state = {
       title,
-      showModal: false
-    }
-    console.log('this is this ', this)
+      showModal: false,
+    };
   }
 
-  handleOpenModal () {
-    this.setState({showModal: true})
+  handleOpenModal() {
+    this.setState({showModal: true});
   }
 
-  handleCloseModal (e) {
-    console.log('e',e)
+  handleCloseModal(e) {
     if (e) {
-
-
-      const start = {
-        firstName:   document.getElementById('firstName').value,
-        lastName:    document.getElementById('lastName').value,
-        dateOfBirth: document.getElementById('dateOfBirth').value,
-        phoneNumber: document.getElementById('phoneNumber').value,
-        address:     document.getElementById('address').value,
-        notes:       document.getElementById('notes').value
-      }
-      window.reactor.dispatchEvent('updatedTable', start)
-      console.log('this', this.props)
-      // this.props.changeTable(start);
-      this.setState({showModal: false})
+      const container = document.getElementById('form');
+      const inputs = container.getElementsByTagName('input');
+      let info = {};
+      Array.from(new Array(inputs.length),
+        ((x, i) => info[inputs[i].id] = inputs[i].value));
+      info['notes'] = document.getElementById('notes').value;
+      window.reactor.dispatchEvent('updatedTable', info);
+      this.setState({showModal: false});
     }
-    this.setState({showModal: false})
+    this.setState({showModal: false});
   }
 
-  render () {
+  render() {
     return (
       <div >
         <div style={styles.title}>
@@ -285,7 +273,7 @@ export class Title extends Component {
                 <a onClick={this.handleCloseModal} style={headerStyles.date}>x
                 </a>
               </header>
-              <div style={styles.parent}>
+              <div id="form" style={styles.parent}>
                 <div style={styles.top}>
                   <div style={styles.modalLeft}>
                     <lable style={styles.label} htmlFor="firstName">First Name
@@ -331,6 +319,6 @@ export class Title extends Component {
           </div>
         </ReactModal>
       </div>
-    )
+    );
   }
 }

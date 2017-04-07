@@ -1,35 +1,48 @@
 /*eslint-disable*/
-import React, { Component } from 'react'
-import { Header } from './header'
-import { Title } from './title'
-import { Techs } from './techs/techs'
-import { Footer } from './footer'
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
-function Event (name) {
-  this.name = name
-  this.callbacks = []
+import React, {Component} from 'react';
+import {Header} from './header';
+import {Title} from './title';
+import {Techs} from './techs/techs';
+import {Footer} from './footer';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+
+// turn this event creation prototype into a into a service and use it to bind
+// data and update the model. Consider replacing this with bacon.js and using
+//  streams instead of listening and dispatching events.
+function Event(name) {
+  this.name = name;
+  this.callbacks = [];
 }
-Event.prototype.registerCallback = function (callback) {
-  this.callbacks.push(callback)
+Object.assign(Event.prototype, {
+  registerCallback(callback){
+    this.callbacks.push(callback);
+  },
+});
+
+function Dispatcher() {
+  this.events = {};
 }
-function Reactor () {
-  this.events = {}
-}
-Reactor.prototype.registerEvent = function (eventName) {
-  const event = new Event(eventName)
-  this.events[eventName] = event
-}
-Reactor.prototype.dispatchEvent = function (eventName, eventArgs) {
-  this.events[eventName].callbacks.forEach(callback => {
-    callback(eventArgs)
-  })
-}
-Reactor.prototype.addEventListener = function (eventName, callback) {
-  this.events[eventName].registerCallback(callback)
-}
-window.reactor = new Reactor()
-window.reactor.registerEvent('updatedTable')
+Object.assign(Dispatcher.prototype, {
+  registerEvent(eventName) {
+    const event = new Event(eventName);
+    this.events[eventName] = event;
+  },
+});
+Object.assign(Dispatcher.prototype, {
+  dispatchEvent (eventName, eventArgs) {
+    this.events[eventName].callbacks.forEach(callback => {
+      callback(eventArgs);
+    });
+  },
+});
+Object.assign(Dispatcher.prototype, {
+  addEventListener(eventName, callback) {
+    this.events[eventName].registerCallback(callback);
+  },
+});
+window.reactor = new Dispatcher();
+window.reactor.registerEvent('updatedTable');
 let data = [
   {
     firstName:   'Tiffany ',
@@ -37,27 +50,27 @@ let data = [
     dateOfBirth: 1969,
     phoneNumber: '777 777 777',
     address:     'Hotel California',
-    notes:       'has the Mercedes bends'
-  }
-]
+    notes:       'has the Mercedes bends',
+  },
+];
 const styles = {
   container: {
     display:       'flex',
     flexDirection: 'column',
-    minHeight:     '100%'
+    minHeight:     '100%',
   },
   main:      {
     flex:          1,
     display:       'flex',
-    flexDirection: 'column'
-  }
-}
+    flexDirection: 'column',
+  },
+};
 if (localStorage.getItem('data') === null) {
-  const model = JSON.stringify(data)
-  localStorage.setItem('data', model)
+  const model = JSON.stringify(data);
+  localStorage.setItem('data', model);
 }
 else {
-  data = JSON.parse(localStorage.getItem('data'))
+  data = JSON.parse(localStorage.getItem('data'));
 }
 
 // listen to Event outside of render, do something  with localStorage or other
@@ -73,36 +86,36 @@ else {
 //let originalSetItem = localStorage.setItem;
 
 export class Main extends Component {
-  constructor () {
-    super()
-    this.setState = this.setState.bind(this)
+  constructor() {
+    super();
+    this.setState = this.setState.bind(this);
     this.state = {
       data,
       loading: false,
-      pages:   1
-    }
+      pages:   1,
+    };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.reactor.addEventListener('updatedTable', e => {
       if (e) {
-        data.push(e)
-        localStorage.setItem('data', JSON.stringify(data))
-        console.log('data comming in', e)
-        console.log('data', data)
+        data.push(e);
+        localStorage.setItem('data', JSON.stringify(data));
+        console.log('data comming in', e);
+        console.log('data', data);
         this.setState({
           data:    data,
-          loading: false
-        })
+          loading: false,
+        });
 
       }
-    }, false)
+    }, false);
   }
 
-//componentUnMount for non custom events.
+//componentUnMount for react dom events.
 
-  render () {
-// instead of componentDidMount can use localStorage Event as a DataBinding for
+  render() {
+// instead of componentDidMount can use localStorage Event as a DataBinding
     //const self = this;
     //localStorage.setItem = function(){
     //  document.createEvent('Event').initEvent('itemInserted', true, true);
@@ -121,13 +134,13 @@ export class Main extends Component {
             getTdProps={(state, rowInfo, column, instance) => {
               return {
                 onClick: e => {
-                  console.log('A Td Element was clicked!')
-                  console.log('it produced this event:', e)
-                  console.log('It was in this column:', column)
-                  console.log('It was in this row:', rowInfo)
-                  console.log('It was in this table instance:', instance)
-                }
-              }
+                  console.log('A Td Element was clicked!');
+                  console.log('it produced this event:', e);
+                  console.log('It was in this column:', column);
+                  console.log('It was in this row:', rowInfo);
+                  console.log('It was in this table instance:', instance);
+                },
+              };
             }}
             loading={this.state.loading}
             data={this.state.data}
@@ -135,42 +148,42 @@ export class Main extends Component {
             sorting={[
               {
                 id:  'lastName',
-                asc: true
+                asc: true,
               }, {
                 id:  'firstName',
-                asc: true
-              }
+                asc: true,
+              },
             ]}
             columns={[
               {
                 header:   'First Name',
-                accessor: 'firstName'
+                accessor: 'firstName',
               }, {
                 header:   'Last Name',
                 id:       'lastName',
-                accessor: d => d.lastName
+                accessor: d => d.lastName,
               }, {
                 header:   'Date of Birth',
-                accessor: 'dateOfBirth'
+                accessor: 'dateOfBirth',
 
               }, {
                 header:   'Phone Number',
-                accessor: 'phoneNumber'
+                accessor: 'phoneNumber',
               }, {
                 header:   'Address',
-                accessor: 'address'
+                accessor: 'address',
               }, {
                 header:   'Notes',
-                accessor: 'notes'
-              }
+                accessor: 'notes',
+              },
             ]}
             defaultPageSize={20}
             title={this.title}
             manual
             onChange={(state, instance) => {
-              console.log(state)
-              this.setState({loading: true})
-              this.setState({data: data, loading: false})
+              console.log(state);
+              this.setState({loading: true});
+              this.setState({data: data, loading: false});
             }
             }
           />
@@ -178,6 +191,6 @@ export class Main extends Component {
         </main>
         <Footer/>
       </div>
-    )
+    );
   }
 }
